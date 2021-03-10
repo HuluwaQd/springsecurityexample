@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyw.springsecurityexample.mapper.UserMapper" >
+    <!--&lt;!&ndash;高级查询&ndash;&gt;-->
+    <resultMap id="resultMap" type="SecurityUser">
+        <id column="user_id" property="userId"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="pass_word" property="passWord"></result>
+    </resultMap>
+
+    <select id="getUserByUserName" parameterType="String" resultMap="resultMap">
+        SELECT * from security_user u where u.user_name = #{userName}
+    </select>
+    <insert id="createUser" parameterType="SecurityUser">
+        insert into security_user set (user_name,pass_word) values (#{bean.userName},#{bean.pass_word})
+    </insert>
+    <delete id="delUser" parameterType="String">
+        delete from security_user where user_name = #{userName}
+    </delete>
+    <update id="updateUser" parameterType="SecurityUser">
+        update security_user set (user_name,pass_word) values (#{bean.userName},#{bean.pass_word}) where user_name = #{bean.userName}
+    </update>
+
+
+</mapper>

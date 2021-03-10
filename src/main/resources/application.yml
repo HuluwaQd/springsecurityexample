@@ -1,0 +1,8 @@
+mybatis:
+  type-aliases-package: com.lyw.springsecurityexample.domain
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 19921209
+    url: jdbc:mysql://127.0.0.1:3306/spring_security_database?userUnicode=true&characterEncoding=utf8&userSSL=false
