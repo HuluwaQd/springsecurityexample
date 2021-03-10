@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 public class CustomUserDetailsManager {
-    @Autowired
+    @Resource
     private UserService userService;
 
     public CustomUserDetailsManager() {
