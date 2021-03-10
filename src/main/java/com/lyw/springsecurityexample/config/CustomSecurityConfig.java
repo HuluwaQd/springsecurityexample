@@ -1,17 +1,10 @@
 package com.lyw.springsecurityexample.config;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
-
-import javax.annotation.Resource;
 
 /**
  * @author lyw

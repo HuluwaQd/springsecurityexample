@@ -4,9 +4,6 @@ import com.lyw.springsecurityexample.domain.SecurityUser;
 import com.lyw.springsecurityexample.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
 /**
  * @author lyw
  * @Create 2021-03-09 15:09
@@ -24,7 +19,7 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 public class CustomUserDetailsManager {
-    @Resource
+    @Autowired
     private UserService userService;
 
     public CustomUserDetailsManager() {
