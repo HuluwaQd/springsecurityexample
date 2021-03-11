@@ -2,8 +2,11 @@ package com.lyw.springsecurityexample.config;
 
 import com.lyw.springsecurityexample.domain.SecurityUser;
 import com.lyw.springsecurityexample.service.UserService;
+import com.lyw.springsecurityexample.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +24,6 @@ import org.springframework.stereotype.Component;
 public class CustomUserDetailsManager {
     @Autowired
     private UserService userService;
-
-    public CustomUserDetailsManager() {
-        UserDetails qd = User.withUsername("qd").password("{noop}19921209").authorities(AuthorityUtils.NO_AUTHORITIES).build();
-        createUser(qd);
-    }
 
     public void createUser(UserDetails user){
         UserDetails databaseUser = userService.getUserByUserName(user.getUsername());

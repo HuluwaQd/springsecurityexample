@@ -3,8 +3,12 @@ package com.lyw.springsecurityexample.service.impl;
 import com.lyw.springsecurityexample.mapper.UserMapper;
 import com.lyw.springsecurityexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Condition;
+import org.springframework.context.annotation.ConditionContext;
+import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @author lyw
