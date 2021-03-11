@@ -1,5 +1,6 @@
 package com.lyw.springsecurityexample.service;
 
+import com.lyw.springsecurityexample.domain.SecurityUser;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -12,7 +13,7 @@ public interface UserService {
      * @param userName
      * @return
      */
-    UserDetails getUserByUserName(String userName);
+    SecurityUser getUserByUserName(String userName);
 
     /**
      * 创建用户
@@ -31,4 +32,11 @@ public interface UserService {
      * @param user
      */
     void updateUser(UserDetails user);
+
+    /**
+     * 根据用户名称加载security用户
+     * @param username
+     * @return
+     */
+    UserDetails loadUserByUsername(String username);
 }

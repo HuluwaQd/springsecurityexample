@@ -1,11 +1,11 @@
 package com.lyw.springsecurityexample.service.impl;
 
+import com.lyw.springsecurityexample.domain.SecurityUser;
 import com.lyw.springsecurityexample.mapper.UserMapper;
 import com.lyw.springsecurityexample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Condition;
-import org.springframework.context.annotation.ConditionContext;
-import org.springframework.core.type.AnnotatedTypeMetadata;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,9 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public UserDetails getUserByUserName(String userName) {
-        return userMapper.getUserByUserName(userName);
+    public SecurityUser getUserByUserName(String userName) {
+        SecurityUser userByUserName = userMapper.getUserByUserName(userName);
+        return userByUserName;
     }
 
     /**
@@ -57,5 +58,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UserDetails user) {
         userMapper.updateUser(user);
+    }
+
+    /**
+     * 根据用户名称加载security用户
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        SecurityUser userByUserName = userMapper.getUserByUserName(username);
+        UserDetails user = User.withUsername(userByUserName.getUsername()).password(userByUserName.getPassword()).authorities(AuthorityUtils.NO_AUTHORITIES).build();
+        return user;
     }
 }

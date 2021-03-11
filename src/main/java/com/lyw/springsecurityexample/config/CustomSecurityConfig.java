@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 /**
+ * 代理security UserDetailsManager的处理，交给自定义 CustomUserDetailsManager来处理
  * @author lyw
  * @Create 2021-03-09 15:35
  */

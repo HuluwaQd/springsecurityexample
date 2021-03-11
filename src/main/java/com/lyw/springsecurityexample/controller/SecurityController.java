@@ -34,6 +34,6 @@ public class SecurityController {
     }
     @GetMapping("/queryUser")
     public SecurityUser queryUser(@RequestParam("userName") String userName){
-        return (SecurityUser)userService.getUserByUserName(userName);
+        return userService.getUserByUserName(userName);
     }
 }

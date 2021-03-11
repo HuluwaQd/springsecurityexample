@@ -2,15 +2,10 @@ package com.lyw.springsecurityexample.config;
 
 import com.lyw.springsecurityexample.domain.SecurityUser;
 import com.lyw.springsecurityexample.service.UserService;
-import com.lyw.springsecurityexample.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -26,8 +21,8 @@ public class CustomUserDetailsManager {
     private UserService userService;
 
     public void createUser(UserDetails user){
-        UserDetails databaseUser = userService.getUserByUserName(user.getUsername());
-        if(databaseUser == null){
+        SecurityUser userByUserName = userService.getUserByUserName(user.getUsername());
+        if(userByUserName == null){
             userService.createUser(user);
         }else {
             log.info("已存在当前用户");
@@ -65,5 +60,7 @@ public class CustomUserDetailsManager {
     public Boolean userExists(String userName){
         return userService.getUserByUserName(userName)!=null?true:false;
     }
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { return userService.getUserByUserName(username); }
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userService.loadUserByUsername(username);
+    }
 }
